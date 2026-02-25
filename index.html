@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abhay Tomar | Full Stack Developer & Cybersecurity Enthusiast</title>
+    <meta name="description"
+        content="Portfolio of Abhay Tomar — Full Stack Developer (MERN), AI/ML builder, Cybersecurity enthusiast, Top 2% TryHackMe." />
+    <meta name="author" content="Abhay Tomar" />
+
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:title" content="Abhay Tomar | Full Stack Developer & Cybersecurity" />
+    <meta property="og:description" content="MERN Stack · AI/ML · Cybersecurity · Top 2% TryHackMe" />
+    <meta property="og:image" content="og-image.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Abhay Tomar | Full Stack Developer" />
+    <meta name="twitter:image" content="og-image.png" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#00f5ff" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Background Overlays -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-overlay"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <!-- ───── SCROLL PROGRESS BAR ───── -->
+    <div id="scroll-progress"></div>
+
+    <!-- ───── LOADER (Terminal) ───── -->
+    <div id="loader">
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span style="background:#ff5f56"></span>
+                    <span style="background:#ffbd2e"></span>
+                    <span style="background:#27c93f"></span>
+                </div>
+                <div class="terminal-title">abhay@portfolio ~ — zsh</div>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <div class="t-line" id="t-cursor"><span class="t-prompt">$ </span><span class="t-typing"
+                        id="t-typing"></span><span class="t-caret">_</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ───── NAVIGATION ───── -->
+    <nav>
+        <a href="#hero" class="nav-logo">ABHAY.DEV</a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#achievements">Wins</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="#contact" class="nav-hire">Hire Me →</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  HERO                                  -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="hero">
+        <div style="text-align:center; z-index:10; position:relative;">
+            <div class="hero-badges-row">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    AVAILABLE FOR OPPORTUNITIES &nbsp;·&nbsp; LPU, INDIA
+                </div>
+                <div class="hero-badge hero-badge-learn">
+                    <span style="font-size:0.85rem;">📡</span>
+                    Currently exploring: <strong style="color:var(--cyan);">DevSecOps</strong>
+                </div>
+            </div>
+
+            <h1 class="hero-name glitch">ABHAY TOMAR</h1>
+
+            <p class="hero-subtitle">B.Tech CSE &nbsp;|&nbsp; CGPA 8.38 &nbsp;|&nbsp; Lovely Professional University</p>
+
+            <div class="typewriter-wrap">
+                <span class="typewriter-text"></span>
+            </div>
+
+            <div class="hero-btns">
+                <a href="#projects" class="btn-primary">View Projects</a>
+                <a href="Abhay_Tomar_CV.pdf" download class="btn-secondary">&#8659; Download CV</a>
+                <a href="#contact" class="btn-tertiary">Get In Touch</a>
+            </div>
+
+            <!-- Building Next -->
+            <div class="hero-building reveal">
+                <span class="hero-building-label">[ BUILDING: </span><span class="hero-building-text">AI-powered
+                    Intrusion Detection System</span><span class="hero-building-label"> ]</span>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span>SCROLL</span>
+            <div class="scroll-bar"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  ABOUT                                 -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="about">
+        <div class="container">
+            <div class="section-tag">01 &nbsp; ABOUT ME</div>
+            <h2 class="section-title">Who Is Abhay?</h2>
+
+            <div class="about-grid reveal">
+                <!-- Photo -->
+                <div class="about-photo-wrap">
+                    <div class="about-photo-border">
+                        <img src="abhay.jpeg" alt="Abhay Tomar" class="about-photo" loading="lazy" />
+                    </div>
+                    <div class="about-photo-badge">⚡ Available to Hire</div>
+                </div>
+
+                <!-- Content -->
+                <div class="about-content">
+                    <p>Hey there! I'm <strong>Abhay Tomar</strong>, a Computer Science Engineering student at
+                        <strong>Lovely Professional University</strong> with a CGPA of <strong>8.38</strong>. I build
+                        things that matter — from AI-powered supply chain platforms to tamper-proof voting systems.
+                    </p>
+
+                    <p>I work across the <strong>full stack</strong> — MERN, Python/Flask, Firebase — and I'm deeply
+                        passionate about <strong>cybersecurity</strong>. I'm ranked in the <strong>Top 2% globally on
+                            TryHackMe</strong> among 3M+ users, which tells you I'm not just writing code — I'm thinking
+                        about how it breaks too.</p>
+
+                    <p>I thrive on <strong>fast, independent execution</strong>, building real products with real
+                        impact. My approach: learn fast, ship faster, and don't stop until it works exactly right.</p>
+
+                    <div class="about-stats stagger">
+                        <div class="stat-card">
+                            <div class="stat-num" data-val="8.38">0</div>
+                            <div class="stat-label">CGPA</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num" data-val="3" data-suffix="+">0</div>
+                            <div class="stat-label">Major Projects</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num" data-val="2" data-suffix="">Top 2%</div>
+                            <div class="stat-label">TryHackMe</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  SKILLS                                -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-tag">02 &nbsp; TECHNICAL SKILLS</div>
+            <h2 class="section-title">My Tech Arsenal</h2>
+
+            <div class="skills-grid stagger">
+                <div class="skill-cat reveal">
+                    <div class="skill-cat-title">
+                        <span class="skill-cat-icon">🖥️</span> Languages
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Bash / Shell</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                    </div>
+                </div>
+
+                <div class="skill-cat reveal">
+                    <div class="skill-cat-title">
+                        <span class="skill-cat-icon">⚙️</span> Frameworks & Runtimes
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">JWT Auth</span>
+                        <span class="skill-tag">RBAC</span>
+                    </div>
+                </div>
+
+                <div class="skill-cat reveal">
+                    <div class="skill-cat-title">
+                        <span class="skill-cat-icon">🗄️</span> Databases & Cloud
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Firebase Firestore</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Firebase Auth</span>
+                        <span class="skill-tag">Firebase Hosting</span>
+                    </div>
+                </div>
+
+                <div class="skill-cat reveal">
+                    <div class="skill-cat-title">
+                        <span class="skill-cat-icon">🛡️</span> Security & Networking
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Kali Linux</span>
+                        <span class="skill-tag">Metasploit</span>
+                        <span class="skill-tag">Wireshark</span>
+                        <span class="skill-tag">Nmap</span>
+                        <span class="skill-tag">Firewalls</span>
+                        <span class="skill-tag">Cisco Packet Tracer</span>
+                        <span class="skill-tag">Windows Server 2012 R2</span>
+                        <span class="skill-tag">OSPF / RIP / VLAN</span>
+                    </div>
+                </div>
+
+                <div class="skill-cat reveal">
+                    <div class="skill-cat-title">
+                        <span class="skill-cat-icon">🤖</span> AI / ML
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow.js</span>
+                        <span class="skill-tag">face-api.js</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Linear Regression</span>
+                        <span class="skill-tag">EWMA</span>
+                        <span class="skill-tag">Holt-Winters</span>
+                    </div>
+                </div>
+
+                <div class="skill-cat reveal">
+                    <div class="skill-cat-title">
+                        <span class="skill-cat-icon">🔧</span> Tools & Platforms
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git & GitHub</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">SHA-256 Hashing</span>
+                        <span class="skill-tag">FingerprintJS</span>
+                        <span class="skill-tag">EmailJS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  PROJECTS                              -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-tag">03 &nbsp; PROJECTS</div>
+            <h2 class="section-title">What I've Built</h2>
+
+            <div class="projects-grid stagger">
+
+                <!-- Project 1: SupplySenseAI -->
+                <div class="project-card reveal">
+                    <div class="project-num">PROJECT // 001</div>
+                    <div class="project-name">AI-Powered Supply Chain Platform</div>
+                    <div class="project-codename">[ SUPPLYSENSEAI ] &nbsp; Jan 2026 – Feb 2026</div>
+                    <ul class="project-highlights">
+                        <li>Architected full-stack MERN platform with Python/Flask ML microservice — <strong
+                                style="color:var(--cyan)">~85% forecast accuracy</strong>, 18% stockout reduction</li>
+                        <li>JWT-based RBAC with dedicated dashboards for inventory managers & analysts</li>
+                        <li>Automated inventory optimization via Python; real-time MongoDB stock tracking</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">MERN</span>
+                        <span class="tech-badge">Python Flask</span>
+                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">Machine Learning</span>
+                        <span class="tech-badge">JWT</span>
+                        <span class="tech-badge">REST APIs</span>
+                    </div>
+                    <div style="margin-top:20px; display:flex; gap:10px;">
+                        <a href="https://github.com/Abhaytomar09/SupplySenseAI" target="_blank" rel="noopener"
+                            style="font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cyan);border:1px solid rgba(0,245,255,0.3);padding:6px 14px;border-radius:4px;text-decoration:none;letter-spacing:0.08em;transition:all 0.3s;"
+                            onmouseover="this.style.background='rgba(0,245,255,0.1)'"
+                            onmouseout="this.style.background=''">⌥ GitHub</a>
+                        <a href="https://supplysenseai-frontend.onrender.com/" target="_blank" rel="noopener"
+                            style="font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--dark);background:var(--cyan);border:1px solid var(--cyan);padding:6px 14px;border-radius:4px;text-decoration:none;letter-spacing:0.08em;font-weight:700;transition:all 0.3s;"
+                            onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">▶ Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 2: CyberGuard -->
+                <div class="project-card reveal">
+                    <div class="project-num">PROJECT // 002</div>
+                    <div class="project-name">Vehicle Theft Complaint System</div>
+                    <div class="project-codename">[ CYBERGUARD ] &nbsp; Jun 2025 – Jul 2025</div>
+                    <ul class="project-highlights">
+                        <li>TensorFlow.js client-side image verification — <strong style="color:var(--pink)">~35% fewer
+                                false complaints</strong></li>
+                        <li>Investigator dashboard with live case tracking, chat support, and geospatial heatmap —
+                            <strong style="color:var(--pink)">40% better response</strong>
+                        </li>
+                        <li>Real-time Firebase Firestore + EmailJS automated notifications</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML/CSS/JS</span>
+                        <span class="tech-badge">Firebase</span>
+                        <span class="tech-badge">TensorFlow.js</span>
+                        <span class="tech-badge">EmailJS</span>
+                        <span class="tech-badge">Geospatial</span>
+                    </div>
+                    <div style="margin-top:20px; display:flex; gap:10px;">
+                        <a href="https://github.com/Abhaytomar09/vehicle-theft-app" target="_blank" rel="noopener"
+                            style="font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cyan);border:1px solid rgba(0,245,255,0.3);padding:6px 14px;border-radius:4px;text-decoration:none;letter-spacing:0.08em;transition:all 0.3s;"
+                            onmouseover="this.style.background='rgba(0,245,255,0.1)'"
+                            onmouseout="this.style.background=''">⌥ GitHub</a>
+                        <a href="https://cyber-guard-14eaa.web.app/" target="_blank" rel="noopener"
+                            style="font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--dark);background:var(--pink);border:1px solid var(--pink);padding:6px 14px;border-radius:4px;text-decoration:none;letter-spacing:0.08em;font-weight:700;transition:all 0.3s;"
+                            onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">▶ Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 3: CampusVote -->
+                <div class="project-card reveal">
+                    <div class="project-num">PROJECT // 003</div>
+                    <div class="project-name">Online College Voting System</div>
+                    <div class="project-codename">[ CAMPUSVOTE ] &nbsp; Mar 2025 – May 2025</div>
+                    <ul class="project-highlights">
+                        <li>AI face verification (face-api.js) + FingerprintJS to prevent impersonation & duplicate
+                            votes</li>
+                        <li>SHA-256 chained vote hashing in Firestore — <strong style="color:var(--green)">immutable,
+                                auditable election records</strong></li>
+                        <li>Live organizer dashboard; deployed on Firebase Hosting with sub-second load times</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML/CSS/JS</span>
+                        <span class="tech-badge">Firebase</span>
+                        <span class="tech-badge">face-api.js</span>
+                        <span class="tech-badge">FingerprintJS</span>
+                        <span class="tech-badge">SHA-256</span>
+                    </div>
+                    <div style="margin-top:20px; display:flex; gap:10px;">
+                        <a href="https://github.com/Abhaytomar09/college_voting_systerm" target="_blank" rel="noopener"
+                            style="font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cyan);border:1px solid rgba(0,245,255,0.3);padding:6px 14px;border-radius:4px;text-decoration:none;letter-spacing:0.08em;transition:all 0.3s;"
+                            onmouseover="this.style.background='rgba(0,245,255,0.1)'"
+                            onmouseout="this.style.background=''">⌥ GitHub</a>
+                        <a href="https://campusvote-abhaytomar.web.app/" target="_blank" rel="noopener"
+                            style="font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--dark);background:var(--green);border:1px solid var(--green);padding:6px 14px;border-radius:4px;text-decoration:none;letter-spacing:0.08em;font-weight:700;transition:all 0.3s;"
+                            onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">▶ Live Demo</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  EDUCATION                             -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="education">
+        <div class="container">
+            <div class="section-tag">04 &nbsp; EDUCATION & TRAINING</div>
+            <h2 class="section-title">Academic Journey</h2>
+
+            <div class="timeline reveal">
+
+                <div class="timeline-item">
+                    <div class="timeline-date">AUG 2023 – PRESENT</div>
+                    <div class="timeline-card">
+                        <div class="timeline-title">B.Tech in Computer Science & Engineering</div>
+                        <div class="timeline-sub">Lovely Professional University, Phagwara, Punjab &nbsp;·&nbsp; CGPA:
+                            <strong style="color:var(--cyan)">8.38</strong>
+                        </div>
+                        <div class="timeline-body">Studying core CS subjects including data structures, algorithms, OS,
+                            networks, and databases alongside hands-on specializations in full-stack development and
+                            cybersecurity.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">JUN 2025 – JUL 2025</div>
+                    <div class="timeline-card">
+                        <div class="timeline-title">NextGen Networking — Advanced Computer Networks</div>
+                        <div class="timeline-sub">LPU Training Program (Certificate)</div>
+                        <div class="timeline-body">Intensive hands-on training in network configuration, routing
+                            protocols (OSPF, RIP), VLAN design via Cisco Packet Tracer. Practiced firewall
+                            configuration, packet analysis with Wireshark, and enterprise network troubleshooting.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">MAR 2022 – MAY 2023</div>
+                    <div class="timeline-card">
+                        <div class="timeline-title">BBPS Sr. Secondary School — Intermediate (PCM)</div>
+                        <div class="timeline-sub">Modinagar, Uttar Pradesh &nbsp;·&nbsp; Percentage: <strong
+                                style="color:var(--cyan)">86%</strong></div>
+                        <div class="timeline-body">Completed higher secondary education with Physics, Chemistry, and
+                            Mathematics, building a strong quantitative foundation for engineering.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">MAR 2020 – MAY 2021</div>
+                    <div class="timeline-card">
+                        <div class="timeline-title">BBPS Sr. Secondary School — Matriculation</div>
+                        <div class="timeline-sub">Modinagar, Uttar Pradesh &nbsp;·&nbsp; Percentage: <strong
+                                style="color:var(--cyan)">78%</strong></div>
+                        <div class="timeline-body">Completed Class X with strong academics, laying the groundwork for a
+                            science stream and future in engineering.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  ACHIEVEMENTS                          -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="achievements">
+        <div class="container">
+            <div class="section-tag">05 &nbsp; ACHIEVEMENTS & CERTIFICATIONS</div>
+            <h2 class="section-title">Hall of Fame</h2>
+
+            <div class="achieve-grid stagger">
+
+                <div class="achieve-card cyan reveal">
+                    <div class="achieve-icon">🏆</div>
+                    <div class="achieve-title">Top 2% Globally on TryHackMe</div>
+                    <div class="achieve-desc">Ranked in the top 2% of <strong>3M+ users</strong> worldwide (Nov 2025),
+                        demonstrating hands-on proficiency in cybersecurity, penetration testing, and CTF challenges.
+                    </div>
+                    <a href="https://tryhackme.com/p/unmax" target="_blank" rel="noopener"
+                        style="display:inline-block;margin-top:14px;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cyan);border:1px solid rgba(0,245,255,0.3);padding:5px 12px;border-radius:4px;text-decoration:none;letter-spacing:0.08em;">
+                        ↗ tryhackme.com/p/unmax
+                    </a>
+                </div>
+
+                <div class="achieve-card pink reveal">
+                    <div class="achieve-icon">⚡</div>
+                    <div class="achieve-title">Top 10 — ByteBash Hackathon</div>
+                    <div class="achieve-desc">Achieved top 10 ranking among <strong>300+ competing teams</strong> (Jul
+                        2023). Built and presented a working prototype under a 24-hour time constraint.</div>
+                </div>
+
+                <div class="achieve-card green reveal">
+                    <div class="achieve-icon">💻</div>
+                    <div class="achieve-title">LeetCode — Active Problem Solver</div>
+                    <div class="achieve-desc">Regularly solving algorithmic and data structure challenges, sharpening
+                        problem-solving skills across difficulty levels.</div>
+                    <a href="https://leetcode.com/u/unmax007/" target="_blank" rel="noopener"
+                        style="display:inline-block;margin-top:14px;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--green);border:1px solid rgba(0,255,136,0.3);padding:5px 12px;border-radius:4px;text-decoration:none;letter-spacing:0.08em;">
+                        ↗ leetcode.com/u/unmax007
+                    </a>
+                </div>
+
+                <div class="achieve-card purple reveal">
+                    <div class="achieve-icon">📊</div>
+                    <div class="achieve-title">Data Analytics with Microsoft Power BI</div>
+                    <div class="achieve-desc">NASSCOM Certification (May 2025) — Mastered data visualization, Business
+                        Intelligence dashboards, and analytics pipeline design using Power BI.</div>
+                </div>
+
+                <div class="achieve-card cyan reveal" style="border-color:rgba(0,245,255,0.2);">
+                    <div class="achieve-icon">📜</div>
+                    <div class="achieve-title">Privacy &amp; Security in Online Social Media</div>
+                    <div class="achieve-desc">NPTEL Certification (Dec 2025) — Covered digital privacy mechanisms,
+                        social media security threats, and data protection principles in depth.</div>
+                </div>
+
+                <div class="achieve-card green reveal" style="border-color:rgba(0,255,136,0.2);">
+                    <div class="achieve-icon">🌐</div>
+                    <div class="achieve-title">NextGen Networking — Advanced Computer Networks</div>
+                    <div class="achieve-desc">LPU Summer Internship Certificate (Jun–Jul 2025) — Routing protocols
+                        (OSPF, RIP), VLAN design, Cisco Packet Tracer, Wireshark packet analysis, and firewall
+                        configuration.</div>
+                </div>
+
+            </div>
+
+            <!-- TryHackMe Live Badge -->
+            <div class="reveal" style="margin-top:48px;">
+                <div class="section-tag" style="margin-bottom:16px;">LIVE TRYHACKME STATS</div>
+                <div
+                    style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:24px;max-width:480px;">
+                    <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5748343"
+                        style="border:none;width:100%;height:160px;border-radius:6px;"></iframe>
+                </div>
+            </div>
+            <div class="certs-grid stagger">
+                <div class="cert-card reveal">
+                    <div class="cert-icon">📜</div>
+                    <div>
+                        <div class="cert-name">Privacy & Security in Online Social Media</div>
+                        <div class="cert-issuer">NPTEL &nbsp;·&nbsp; Dec 2025</div>
+                    </div>
+                </div>
+                <div class="cert-card reveal">
+                    <div class="cert-icon">📊</div>
+                    <div>
+                        <div class="cert-name">Data Analytics with Microsoft Power BI</div>
+                        <div class="cert-issuer">NASSCOM &nbsp;·&nbsp; May 2025</div>
+                    </div>
+                </div>
+                <div class="cert-card reveal">
+                    <div class="cert-icon">🌐</div>
+                    <div>
+                        <div class="cert-name">Advanced Computer Networks Training</div>
+                        <div class="cert-issuer">LPU Certificate &nbsp;·&nbsp; Jul 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  CONTACT                               -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-tag" style="justify-content:center;">06 &nbsp; CONTACT</div>
+            <h2 class="section-title" style="text-align:center;">Let's Build Together</h2>
+
+            <div class="contact-wrapper">
+                <p class="contact-desc reveal">Whether it's a full-stack product, a security audit, or just a good
+                    conversation about tech — I'm always open. Let's connect and build something remarkable.</p>
+
+                <div class="contact-links stagger">
+                    <a href="mailto:abhaytomar392004@gmail.com" class="contact-link reveal">
+                        <span class="contact-link-icon">📧</span>
+                        <div>
+                            <div class="contact-link-label">EMAIL</div>
+                            <div class="contact-link-val">abhaytomar392004@gmail.com</div>
+                        </div>
+                    </a>
+                    <a href="tel:+918445056568" class="contact-link reveal">
+                        <span class="contact-link-icon">📱</span>
+                        <div>
+                            <div class="contact-link-label">PHONE</div>
+                            <div class="contact-link-val">+91 84450 56568</div>
+                        </div>
+                    </a>
+                    <a href="https://linkedin.com/in/abhaytomar396" target="_blank" rel="noopener"
+                        class="contact-link reveal">
+                        <span class="contact-link-icon">💼</span>
+                        <div>
+                            <div class="contact-link-label">LINKEDIN</div>
+                            <div class="contact-link-val">linkedin.com/in/abhaytomar396</div>
+                        </div>
+                    </a>
+                    <a href="https://github.com/Abhaytomar09" target="_blank" rel="noopener"
+                        class="contact-link reveal">
+                        <span class="contact-link-icon">🐙</span>
+                        <div>
+                            <div class="contact-link-label">GITHUB</div>
+                            <div class="contact-link-val">github.com/Abhaytomar09</div>
+                        </div>
+                    </a>
+                    <a href="https://tryhackme.com/p/unmax" target="_blank" rel="noopener" class="contact-link reveal">
+                        <span class="contact-link-icon">🛡️</span>
+                        <div>
+                            <div class="contact-link-label">TRYHACKME</div>
+                            <div class="contact-link-val">tryhackme.com/p/unmax</div>
+                        </div>
+                    </a>
+                    <a href="https://leetcode.com/u/unmax007/" target="_blank" rel="noopener"
+                        class="contact-link reveal">
+                        <span class="contact-link-icon">🧩</span>
+                        <div>
+                            <div class="contact-link-label">LEETCODE</div>
+                            <div class="contact-link-val">leetcode.com/u/unmax007</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Contact Form -->
+                <form class="contact-form reveal" action="https://formspree.io/f/xjgejqqv" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">NAME</label>
+                            <input type="text" name="name" class="form-input" placeholder="Your name" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">EMAIL</label>
+                            <input type="email" name="email" class="form-input" placeholder="your@email.com" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">MESSAGE</label>
+                        <textarea name="message" class="form-textarea" rows="5"
+                            placeholder="Tell me about your project or opportunity..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">⚡ Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--  FOOTER                                -->
+    <!-- ═══════════════════════════════════════ -->
+    <footer>
+        <div class="footer-logo">AT</div>
+        <div class="footer-socials">
+            <a href="https://github.com/Abhaytomar09" target="_blank" rel="noopener" class="footer-social-link"
+                title="GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                </svg>
+            </a>
+            <a href="https://linkedin.com/in/abhaytomar396" target="_blank" rel="noopener" class="footer-social-link"
+                title="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+            </a>
+            <a href="https://tryhackme.com/p/unmax" target="_blank" rel="noopener" class="footer-social-link"
+                title="TryHackMe">🛡️</a>
+            <a href="https://github.com/Abhaytomar09" target="_blank" rel="noopener"
+                class="footer-social-link footer-social-gh" title="GitHub Contributions">
+                <img src="https://ghchart.rshah.org/00f5ff/Abhaytomar09" alt="GitHub Contribution Graph"
+                    class="gh-chart" />
+            </a>
+        </div>
+        <p class="footer-text">ABHAY TOMAR &nbsp;·&nbsp; FULL STACK DEVELOPER &nbsp;·&nbsp; CYBERSECURITY
+            ENTHUSIAST<br />
+            &copy; 2026 &nbsp;·&nbsp; BUILT WITH ⚡ AND A LOT OF ☕</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
