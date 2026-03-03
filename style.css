@@ -40,6 +40,33 @@ body {
   cursor: none;
 }
 
+/* ── OFFLINE BANNER ───────────────────────── */
+#offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999999;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 110, 0.9),
+    rgba(191, 0, 255, 0.9)
+  );
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  backdrop-filter: blur(10px);
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+  box-shadow: 0 4px 20px rgba(191, 0, 255, 0.4);
+}
+#offline-banner.visible {
+  transform: translateY(0);
+}
+
 /* ── CUSTOM CURSOR ─────────────────────────── */
 .cursor-dot {
   position: fixed;
@@ -1034,7 +1061,6 @@ section {
   margin-top: 2px;
 }
 
-
 /* ── CERTS SHOWCASE GRID ─────────────── */
 .certs-showcase-grid {
   display: grid;
@@ -1089,7 +1115,9 @@ section {
   object-fit: cover;
   object-position: top center;
   display: block;
-  transition: transform 0.5s ease, filter 0.3s;
+  transition:
+    transform 0.5s ease,
+    filter 0.3s;
   filter: brightness(0.96);
 }
 .cert-showcase-img-link:hover .cert-showcase-img {
@@ -1113,7 +1141,7 @@ section {
   background: rgba(2, 8, 24, 0.55);
   padding: 8px 18px;
   border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .cert-showcase-img-link:hover .cert-showcase-overlay {
   opacity: 1;
@@ -1131,7 +1159,6 @@ section {
     height: 200px;
   }
 }
-
 
 /* ── CONTACT ─────────────────────────── */
 #contact {

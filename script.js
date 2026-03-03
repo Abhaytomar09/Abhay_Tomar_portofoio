@@ -1,3 +1,26 @@
+// ── SERVICE WORKER REGISTRATION ──────────────
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then((reg) => console.log("[SW] Registered:", reg.scope))
+      .catch((err) => console.warn("[SW] Registration failed:", err));
+  });
+}
+
+// ── OFFLINE / ONLINE BANNER ───────────────────
+const offlineBanner = document.getElementById("offline-banner");
+function updateOnlineStatus() {
+  if (!navigator.onLine) {
+    offlineBanner.classList.add("visible");
+  } else {
+    offlineBanner.classList.remove("visible");
+  }
+}
+window.addEventListener("online", updateOnlineStatus);
+window.addEventListener("offline", updateOnlineStatus);
+updateOnlineStatus(); // run on first load in case already offline
+
 // ── TERMINAL LOADER ──────────────────────────
 // Only show on first visit; skip on refresh (sessionStorage flag)
 if (sessionStorage.getItem("loaderDone")) {
