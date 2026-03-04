@@ -21,79 +21,6 @@ window.addEventListener("online", updateOnlineStatus);
 window.addEventListener("offline", updateOnlineStatus);
 updateOnlineStatus(); // run on first load in case already offline
 
-// ── TERMINAL LOADER ──────────────────────────
-// Only show on first visit; skip on refresh (sessionStorage flag)
-if (sessionStorage.getItem("loaderDone")) {
-  document.getElementById("loader").remove();
-}
-
-const terminalLines = [
-  {
-    text: "loading abhay.portfolio@v2.0...",
-    delay: 60,
-    done: "✓ profile loaded",
-  },
-  { text: "compiling projects [3/3]...", delay: 55, done: "✓ projects ready" },
-  { text: "connecting to cyberspace...", delay: 50, done: "✓ online" },
-  { text: "ACCESS GRANTED — welcome.", delay: 45, done: null },
-];
-
-(function runTerminal() {
-  const body = document.getElementById("terminal-body");
-  const typingEl = document.getElementById("t-typing");
-  const caret = document.querySelector(".t-caret");
-  let lineIdx = 0;
-
-  function typeLine(line, onDone) {
-    let i = 0;
-    typingEl.textContent = "";
-    const interval = setInterval(() => {
-      typingEl.textContent += line.text[i++];
-      if (i === line.text.length) {
-        clearInterval(interval);
-        setTimeout(() => onDone(), 400);
-      }
-    }, line.delay);
-  }
-
-  function addDoneLine(text, isGrant) {
-    const div = document.createElement("div");
-    div.className = "t-line done";
-    div.innerHTML = `<span class="t-prompt">${isGrant ? "" : "> "}</span><span class="${isGrant ? "" : "t-success"}">${text}</span>`;
-    body.insertBefore(div, document.getElementById("t-cursor"));
-  }
-
-  function nextLine() {
-    if (lineIdx >= terminalLines.length) {
-      caret.style.display = "none";
-      setTimeout(() => {
-        const loader = document.getElementById("loader");
-        if (loader) {
-          loader.style.transition = "opacity 0.8s ease";
-          loader.style.opacity = "0";
-          setTimeout(() => {
-            loader.remove();
-            sessionStorage.setItem("loaderDone", "1");
-          }, 800);
-        }
-      }, 600);
-      return;
-    }
-    const line = terminalLines[lineIdx++];
-    typeLine(line, () => {
-      if (line.done) {
-        addDoneLine(line.done, line.done.startsWith("ACCESS"));
-      } else {
-        addDoneLine("ACCESS GRANTED — welcome.", true);
-      }
-      typingEl.textContent = "";
-      setTimeout(nextLine, 300);
-    });
-  }
-
-  window.addEventListener("load", () => setTimeout(nextLine, 400));
-})();
-
 // ── SCROLL PROGRESS BAR ──────────────────────
 const progressBar = document.getElementById("scroll-progress");
 window.addEventListener(
@@ -553,40 +480,41 @@ function animateTrail() {
 }
 animateTrail();
 
-
 // ═══════════════════════════════════════════════════════════════
 //  UNIQUE EFFECTS EXTENSION
 // ═══════════════════════════════════════════════════════════════
 
 // ── 1. MATRIX DIGITAL RAIN ────────────────────
 (function matrixRain() {
-  const mc = document.getElementById('matrix-canvas');
-  const mctx = mc.getContext('2d');
+  const mc = document.getElementById("matrix-canvas");
+  const mctx = mc.getContext("2d");
   function resizeMC() {
-    mc.width  = window.innerWidth;
+    mc.width = window.innerWidth;
     mc.height = window.innerHeight;
   }
   resizeMC();
-  window.addEventListener('resize', resizeMC);
+  window.addEventListener("resize", resizeMC);
 
-  const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEF<>/\\|[]{}';
+  const chars =
+    "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEF<>/\\|[]{}";
   const fontSize = 14;
   let cols = Math.floor(mc.width / fontSize);
   let drops = Array(cols).fill(1);
 
   function drawMatrix() {
-    mctx.fillStyle = 'rgba(2, 8, 24, 0.05)';
+    mctx.fillStyle = "rgba(2, 8, 24, 0.05)";
     mctx.fillRect(0, 0, mc.width, mc.height);
     mctx.font = fontSize + 'px "Share Tech Mono", monospace';
     for (let i = 0; i < drops.length; i++) {
       const char = chars[Math.floor(Math.random() * chars.length)];
       const alpha = Math.random() > 0.9 ? 1 : 0.4;
-      mctx.fillStyle = alpha === 1 ? '#00f5ff' : 'rgba(0,245,255,0.3)';
+      mctx.fillStyle = alpha === 1 ? "#00f5ff" : "rgba(0,245,255,0.3)";
       mctx.fillText(char, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > mc.height && Math.random() > 0.975) drops[i] = 0;
+      if (drops[i] * fontSize > mc.height && Math.random() > 0.975)
+        drops[i] = 0;
       drops[i]++;
     }
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       cols = Math.floor(mc.width / fontSize);
       drops = Array(cols).fill(1);
     });
@@ -595,184 +523,191 @@ animateTrail();
   setInterval(drawMatrix, 50);
 
   // Activate after hero is scrolled past
-  const heroEl = document.getElementById('hero');
-  const matrixObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) mc.classList.add('active');
-      else mc.classList.remove('active');
-    });
-  }, { threshold: 0.1 });
+  const heroEl = document.getElementById("hero");
+  const matrixObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) mc.classList.add("active");
+        else mc.classList.remove("active");
+      });
+    },
+    { threshold: 0.1 },
+  );
   if (heroEl) matrixObs.observe(heroEl);
 })();
 
-
 // ── 2. CLICK NEON RIPPLE ──────────────────────
 (function clickRipple() {
-  const container = document.getElementById('click-ripples');
-  const colors = ['var(--cyan)', 'var(--purple)', 'var(--pink)'];
-  document.addEventListener('click', (e) => {
+  const container = document.getElementById("click-ripples");
+  const colors = ["var(--cyan)", "var(--purple)", "var(--pink)"];
+  document.addEventListener("click", (e) => {
     for (let i = 0; i < 3; i++) {
-      const ring = document.createElement('div');
-      ring.className = 'click-ring';
-      ring.style.left = e.clientX + 'px';
-      ring.style.top  = e.clientY + 'px';
-      ring.style.borderColor  = colors[i];
-      ring.style.boxShadow    = `0 0 12px ${colors[i]}`;
-      ring.style.animationDelay = (i * 0.08) + 's';
+      const ring = document.createElement("div");
+      ring.className = "click-ring";
+      ring.style.left = e.clientX + "px";
+      ring.style.top = e.clientY + "px";
+      ring.style.borderColor = colors[i];
+      ring.style.boxShadow = `0 0 12px ${colors[i]}`;
+      ring.style.animationDelay = i * 0.08 + "s";
       container.appendChild(ring);
       setTimeout(() => ring.remove(), 1000);
     }
   });
 })();
 
-
 // ── 3. AUDIO VISUALIZER ───────────────────────
 (function audioViz() {
-  const bars = document.querySelectorAll('.av-bar');
+  const bars = document.querySelectorAll(".av-bar");
   if (!bars.length) return;
   bars.forEach((bar, i) => {
-    const min = Math.random() * 5  + 4;
+    const min = Math.random() * 5 + 4;
     const max = Math.random() * 45 + 12;
     const dur = (Math.random() * 0.6 + 0.4).toFixed(2);
-    bar.style.setProperty('--min-h', min + 'px');
-    bar.style.setProperty('--max-h', max + 'px');
-    bar.style.setProperty('--dur', dur + 's');
-    bar.style.animationDelay = (Math.random() * 0.5).toFixed(2) + 's';
+    bar.style.setProperty("--min-h", min + "px");
+    bar.style.setProperty("--max-h", max + "px");
+    bar.style.setProperty("--dur", dur + "s");
+    bar.style.animationDelay = (Math.random() * 0.5).toFixed(2) + "s";
   });
   // Randomise heights periodically for organic feel
   setInterval(() => {
-    bars.forEach(bar => {
+    bars.forEach((bar) => {
       const max = (Math.random() * 45 + 10).toFixed(0);
-      bar.style.setProperty('--max-h', max + 'px');
+      bar.style.setProperty("--max-h", max + "px");
     });
   }, 2500);
 })();
 
-
 // ── 4. TEXT SCRAMBLE ON SECTION TITLES ───────
 (function textScramble() {
-  const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*<>/\\|[]{}';
+  const CHARS =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*<>/\\|[]{}";
 
   function scramble(el) {
     const original = el.dataset.original || el.textContent.trim();
     el.dataset.original = original;
-    el.classList.add('scrambling');
+    el.classList.add("scrambling");
     let frame = 0;
     const totalFrames = 20;
     const interval = setInterval(() => {
-      el.textContent = original.split('').map((ch, i) => {
-        if (ch === ' ') return ' ';
-        if (frame / totalFrames > i / original.length) return ch;
-        return CHARS[Math.floor(Math.random() * CHARS.length)];
-      }).join('');
+      el.textContent = original
+        .split("")
+        .map((ch, i) => {
+          if (ch === " ") return " ";
+          if (frame / totalFrames > i / original.length) return ch;
+          return CHARS[Math.floor(Math.random() * CHARS.length)];
+        })
+        .join("");
       frame++;
       if (frame > totalFrames) {
         clearInterval(interval);
         el.textContent = original;
-        el.classList.remove('scrambling');
-        el.classList.add('done');
+        el.classList.remove("scrambling");
+        el.classList.add("done");
       }
     }, 40);
   }
 
-  const scrambleTitles = document.querySelectorAll('.scramble-title');
-  const scrambleObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        setTimeout(() => scramble(e.target), 200);
-        scrambleObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  scrambleTitles.forEach(el => scrambleObs.observe(el));
+  const scrambleTitles = document.querySelectorAll(".scramble-title");
+  const scrambleObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          setTimeout(() => scramble(e.target), 200);
+          scrambleObs.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.5 },
+  );
+  scrambleTitles.forEach((el) => scrambleObs.observe(el));
 })();
-
 
 // ── 5. GLITCH SECTION TRANSITION FLASH ───────
 (function glitchFlash() {
-  const sectionEls = document.querySelectorAll('section[id]');
-  let lastId = '';
-  const flashObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting && e.target.id !== lastId) {
-        lastId = e.target.id;
-        if (e.target.id === 'hero') return; // skip hero
-        const flash = document.createElement('div');
-        flash.className = 'section-flash';
-        document.body.appendChild(flash);
-        setTimeout(() => flash.remove(), 300);
-      }
-    });
-  }, { threshold: 0.4 });
-  sectionEls.forEach(s => flashObs.observe(s));
+  const sectionEls = document.querySelectorAll("section[id]");
+  let lastId = "";
+  const flashObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && e.target.id !== lastId) {
+          lastId = e.target.id;
+          if (e.target.id === "hero") return; // skip hero
+          const flash = document.createElement("div");
+          flash.className = "section-flash";
+          document.body.appendChild(flash);
+          setTimeout(() => flash.remove(), 300);
+        }
+      });
+    },
+    { threshold: 0.4 },
+  );
+  sectionEls.forEach((s) => flashObs.observe(s));
 })();
-
 
 // ── 6. MAGNETIC CURSOR ATTRACTION ────────────
 (function magneticCursor() {
-  const MAG_SELECTORS = '.nav-hire, .form-submit, #back-to-top, .contact-link, .hero-badge';
-  document.querySelectorAll(MAG_SELECTORS).forEach(el => {
-    el.classList.add('mag-btn');
-    el.addEventListener('mousemove', (e) => {
+  const MAG_SELECTORS =
+    ".nav-hire, .form-submit, #back-to-top, .contact-link, .hero-badge";
+  document.querySelectorAll(MAG_SELECTORS).forEach((el) => {
+    el.classList.add("mag-btn");
+    el.addEventListener("mousemove", (e) => {
       const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width  / 2;
-      const cy = rect.top  + rect.height / 2;
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
       const dx = (e.clientX - cx) * 0.35;
       const dy = (e.clientY - cy) * 0.35;
       el.style.transform = `translate(${dx}px, ${dy}px)`;
     });
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = '';
+    el.addEventListener("mouseleave", () => {
+      el.style.transform = "";
     });
   });
 })();
-
 
 // ── 7. HOLOGRAPHIC SHIMMER MOUSE TRACKER ─────
 (function holoShimmer() {
-  document.querySelectorAll('.holo-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
+  document.querySelectorAll(".holo-card").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
-      const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
-      card.style.setProperty('--mx', x + '%');
-      card.style.setProperty('--my', y + '%');
-      card.querySelector(':scope > *:not(.holo-card::before)')
+      const x = (((e.clientX - rect.left) / rect.width) * 100).toFixed(1);
+      const y = (((e.clientY - rect.top) / rect.height) * 100).toFixed(1);
+      card.style.setProperty("--mx", x + "%");
+      card.style.setProperty("--my", y + "%");
+      card.querySelector(":scope > *:not(.holo-card::before)");
       // Update the pseudo shine direction dynamically via CSS var
-      card.style.backgroundImage =
-        `radial-gradient(circle at ${x}% ${y}%, rgba(0,245,255,0.07) 0%, transparent 50%)`;
+      card.style.backgroundImage = `radial-gradient(circle at ${x}% ${y}%, rgba(0,245,255,0.07) 0%, transparent 50%)`;
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.backgroundImage = '';
+    card.addEventListener("mouseleave", () => {
+      card.style.backgroundImage = "";
     });
   });
 })();
 
-
 // ── 8. LIQUID SKILL BARS INJECTION ───────────
 (function liquidSkillBars() {
-  const skillsSection = document.getElementById('skills');
+  const skillsSection = document.getElementById("skills");
   if (!skillsSection) return;
 
   const skillData = [
-    { name: 'JavaScript / Node.js',    pct: 88, color: 'var(--cyan)'   },
-    { name: 'React / Next.js',         pct: 82, color: 'var(--cyan)'   },
-    { name: 'Python',                  pct: 80, color: 'var(--green)'  },
-    { name: 'MongoDB / SQL',           pct: 78, color: 'var(--purple)' },
-    { name: 'Cybersecurity / Ethical Hacking', pct: 85, color: 'var(--pink)' },
-    { name: 'C++ / DSA',               pct: 75, color: 'var(--cyan)'   },
+    { name: "JavaScript / Node.js", pct: 88, color: "var(--cyan)" },
+    { name: "React / Next.js", pct: 82, color: "var(--cyan)" },
+    { name: "Python", pct: 80, color: "var(--green)" },
+    { name: "MongoDB / SQL", pct: 78, color: "var(--purple)" },
+    { name: "Cybersecurity / Ethical Hacking", pct: 85, color: "var(--pink)" },
+    { name: "C++ / DSA", pct: 75, color: "var(--cyan)" },
   ];
 
-  const existing = skillsSection.querySelector('.container');
+  const existing = skillsSection.querySelector(".container");
   if (!existing) return;
 
-  const barContainer = document.createElement('div');
-  barContainer.style.cssText = 'margin-top:48px;';
-  barContainer.innerHTML = '<div class="section-tag" style="margin-bottom:24px;">⚡ PROFICIENCY LEVELS</div>';
+  const barContainer = document.createElement("div");
+  barContainer.style.cssText = "margin-top:48px;";
+  barContainer.innerHTML =
+    '<div class="section-tag" style="margin-bottom:24px;">⚡ PROFICIENCY LEVELS</div>';
 
-  skillData.forEach(sk => {
-    const wrap = document.createElement('div');
-    wrap.className = 'skill-bar-wrap reveal';
+  skillData.forEach((sk) => {
+    const wrap = document.createElement("div");
+    wrap.className = "skill-bar-wrap reveal";
     wrap.innerHTML = `
       <div class="skill-bar-label">
         <span>${sk.name}</span>
@@ -789,86 +724,40 @@ animateTrail();
   existing.appendChild(barContainer);
 
   // Animate bars when visible
-  const barObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.skill-bar-fill').forEach(fill => {
-          setTimeout(() => {
-            fill.style.width = fill.dataset.pct + '%';
-          }, 100);
-        });
-        barObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
+  const barObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll(".skill-bar-fill").forEach((fill) => {
+            setTimeout(() => {
+              fill.style.width = fill.dataset.pct + "%";
+            }, 100);
+          });
+          barObs.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.3 },
+  );
   barObs.observe(barContainer);
 
   // Also wire up newly added reveals
-  barContainer.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  barContainer
+    .querySelectorAll(".reveal")
+    .forEach((el) => observer.observe(el));
 })();
-
-
-// ── 9. STATUS TERMINAL WIDGET ─────────────────
-(function statusTerminal() {
-  const terminal = document.getElementById('status-terminal');
-  const body     = document.getElementById('st-body');
-  if (!terminal || !body) return;
-
-  const logs = [
-    { msg: 'portfolio.init() → OK',    type: 'ok'   },
-    { msg: 'canvas.particles loaded',  type: 'ok'   },
-    { msg: 'matrix.rain — ACTIVE',     type: 'ok'   },
-    { msg: 'cybersec.rank → TOP 2%',   type: 'ok'   },
-    { msg: 'scanning threats... none', type: 'ok'   },
-    { msg: 'GPU: render pipeline ✓',   type: 'ok'   },
-    { msg: 'neural.net → STANDBY',     type: ''     },
-    { msg: 'tryhackme.badge → live',   type: 'ok'   },
-    { msg: 'memory: 98% available',    type: 'ok'   },
-    { msg: 'firewall: enabled',        type: 'ok'   },
-    { msg: 'SSH: connection secure',   type: 'ok'   },
-    { msg: 'CTF: challenge mode on',   type: ''     },
-    { msg: 'git: 152 commits ahead',   type: 'ok'   },
-    { msg: 'leetcode: streak active',  type: 'ok'   },
-    { msg: 'system: all green',        type: 'ok'   },
-  ];
-
-  let logIdx = 0;
-  const MAX_LINES = 5;
-
-  function addLog() {
-    const entry = logs[logIdx % logs.length];
-    logIdx++;
-    const now = new Date();
-    const time = now.toTimeString().slice(0,8);
-    const line = document.createElement('div');
-    line.className = 'st-line';
-    line.innerHTML = `<span class="st-time">[${time}]</span><span class="st-${entry.type || ''}">${entry.msg}</span>`;
-    body.appendChild(line);
-    while (body.children.length > MAX_LINES) body.removeChild(body.firstChild);
-  }
-
-  // Show terminal after 3 seconds
-  setTimeout(() => {
-    terminal.classList.add('visible');
-    addLog();
-    setInterval(addLog, 2200);
-  }, 3000);
-})();
-
 
 // ── 10. PARALLAX FLOATING ORBS ON ABOUT ──────
 (function parallaxAbout() {
-  document.addEventListener('mousemove', (e) => {
-    const dx = (e.clientX / window.innerWidth  - 0.5) * 25;
+  document.addEventListener("mousemove", (e) => {
+    const dx = (e.clientX / window.innerWidth - 0.5) * 25;
     const dy = (e.clientY / window.innerHeight - 0.5) * 25;
-    document.querySelectorAll('.blob').forEach((blob, i) => {
+    document.querySelectorAll(".blob").forEach((blob, i) => {
       const factor = (i + 1) * 0.4;
-      blob.style.transform = `translate(${dx*factor}px, ${dy*factor}px) scale(1)`;
+      blob.style.transform = `translate(${dx * factor}px, ${dy * factor}px) scale(1)`;
     });
   });
 })();
-
-
 
 // ═══════════════════════════════════════════════════════════════
 //  DRAMATIC BACKGROUND EFFECTS
@@ -876,40 +765,97 @@ animateTrail();
 
 // ── A. AURORA BOREALIS ────────────────────────
 (function aurora() {
-  const ac  = document.getElementById('aurora-canvas');
-  const ctx = ac.getContext('2d');
+  const ac = document.getElementById("aurora-canvas");
+  const ctx = ac.getContext("2d");
 
   function resize() {
-    ac.width  = window.innerWidth;
+    ac.width = window.innerWidth;
     ac.height = window.innerHeight;
   }
   resize();
-  window.addEventListener('resize', resize);
+  window.addEventListener("resize", resize);
 
   // Define multiple undulating ribbon configs
   const ribbons = [
-    { baseY: 0.22, amp: 0.12, freq: 0.0008, speed: 0.00018, phase: 0,
-      colors: ['rgba(0,245,255,0)', 'rgba(0,245,255,0.18)', 'rgba(0,200,255,0.12)', 'rgba(0,245,255,0)'] },
-    { baseY: 0.30, amp: 0.09, freq: 0.0012, speed: 0.00022, phase: 2.1,
-      colors: ['rgba(191,0,255,0)', 'rgba(191,0,255,0.15)', 'rgba(130,0,255,0.10)', 'rgba(191,0,255,0)'] },
-    { baseY: 0.18, amp: 0.07, freq: 0.0015, speed: 0.00015, phase: 4.3,
-      colors: ['rgba(0,255,136,0)', 'rgba(0,255,136,0.12)', 'rgba(0,200,100,0.08)', 'rgba(0,255,136,0)'] },
-    { baseY: 0.35, amp: 0.10, freq: 0.0009, speed: 0.00020, phase: 1.0,
-      colors: ['rgba(255,0,110,0)', 'rgba(255,0,110,0.10)', 'rgba(200,0,90,0.07)', 'rgba(255,0,110,0)'] },
-    { baseY: 0.14, amp: 0.06, freq: 0.0018, speed: 0.00025, phase: 3.5,
-      colors: ['rgba(0,102,255,0)', 'rgba(0,150,255,0.13)', 'rgba(0,102,255,0.09)', 'rgba(0,102,255,0)'] },
+    {
+      baseY: 0.22,
+      amp: 0.12,
+      freq: 0.0008,
+      speed: 0.00018,
+      phase: 0,
+      colors: [
+        "rgba(0,245,255,0)",
+        "rgba(0,245,255,0.18)",
+        "rgba(0,200,255,0.12)",
+        "rgba(0,245,255,0)",
+      ],
+    },
+    {
+      baseY: 0.3,
+      amp: 0.09,
+      freq: 0.0012,
+      speed: 0.00022,
+      phase: 2.1,
+      colors: [
+        "rgba(191,0,255,0)",
+        "rgba(191,0,255,0.15)",
+        "rgba(130,0,255,0.10)",
+        "rgba(191,0,255,0)",
+      ],
+    },
+    {
+      baseY: 0.18,
+      amp: 0.07,
+      freq: 0.0015,
+      speed: 0.00015,
+      phase: 4.3,
+      colors: [
+        "rgba(0,255,136,0)",
+        "rgba(0,255,136,0.12)",
+        "rgba(0,200,100,0.08)",
+        "rgba(0,255,136,0)",
+      ],
+    },
+    {
+      baseY: 0.35,
+      amp: 0.1,
+      freq: 0.0009,
+      speed: 0.0002,
+      phase: 1.0,
+      colors: [
+        "rgba(255,0,110,0)",
+        "rgba(255,0,110,0.10)",
+        "rgba(200,0,90,0.07)",
+        "rgba(255,0,110,0)",
+      ],
+    },
+    {
+      baseY: 0.14,
+      amp: 0.06,
+      freq: 0.0018,
+      speed: 0.00025,
+      phase: 3.5,
+      colors: [
+        "rgba(0,102,255,0)",
+        "rgba(0,150,255,0.13)",
+        "rgba(0,102,255,0.09)",
+        "rgba(0,102,255,0)",
+      ],
+    },
   ];
 
   let t = 0;
 
   function drawRibbon(r) {
-    const W = ac.width, H = ac.height;
+    const W = ac.width,
+      H = ac.height;
     const ribbonHeight = H * 0.08;
     ctx.beginPath();
 
     // Build wave path top edge
     for (let x = 0; x <= W; x += 4) {
-      const y = r.baseY * H +
+      const y =
+        r.baseY * H +
         Math.sin(x * r.freq + t * r.speed + r.phase) * r.amp * H +
         Math.sin(x * r.freq * 2.3 + t * r.speed * 1.7) * r.amp * H * 0.3;
       if (x === 0) ctx.moveTo(x, y);
@@ -918,7 +864,8 @@ animateTrail();
 
     // Bottom edge (wave + extra height)
     for (let x = W; x >= 0; x -= 4) {
-      const y = r.baseY * H +
+      const y =
+        r.baseY * H +
         Math.sin(x * r.freq + t * r.speed + r.phase) * r.amp * H +
         Math.sin(x * r.freq * 2.3 + t * r.speed * 1.7) * r.amp * H * 0.3 +
         ribbonHeight;
@@ -927,7 +874,12 @@ animateTrail();
     ctx.closePath();
 
     // Vertical color gradient
-    const grad = ctx.createLinearGradient(0, r.baseY * H - 10, 0, r.baseY * H + ribbonHeight + 10);
+    const grad = ctx.createLinearGradient(
+      0,
+      r.baseY * H - 10,
+      0,
+      r.baseY * H + ribbonHeight + 10,
+    );
     r.colors.forEach((c, i) => grad.addColorStop(i / (r.colors.length - 1), c));
     ctx.fillStyle = grad;
     ctx.fill();
@@ -936,7 +888,7 @@ animateTrail();
   function animateAurora() {
     ctx.clearRect(0, 0, ac.width, ac.height);
     // Slight fade trail for smooth blending
-    ctx.fillStyle = 'rgba(2,8,24,0.08)';
+    ctx.fillStyle = "rgba(2,8,24,0.08)";
     ctx.fillRect(0, 0, ac.width, ac.height);
     ribbons.forEach(drawRibbon);
     t++;
@@ -946,12 +898,11 @@ animateTrail();
   animateAurora();
 })();
 
-
 // ── B. SHOOTING STARS ────────────────────────
 (function shootingStars() {
   function spawnStar() {
-    const star = document.createElement('div');
-    star.className = 'shooting-star';
+    const star = document.createElement("div");
+    star.className = "shooting-star";
     const startX = Math.random() * window.innerWidth * 0.6;
     const startY = Math.random() * window.innerHeight * 0.4;
     const length = Math.random() * 120 + 80;
@@ -984,45 +935,54 @@ animateTrail();
   scheduleNext();
 })();
 
-
 // ── C. ANIMATED HEX GRID ─────────────────────
 (function hexGrid() {
-  const hc  = document.getElementById('hex-canvas');
-  const ctx = hc.getContext('2d');
+  const hc = document.getElementById("hex-canvas");
+  const ctx = hc.getContext("2d");
 
   function resize() {
-    hc.width  = window.innerWidth;
+    hc.width = window.innerWidth;
     hc.height = window.innerHeight;
   }
   resize();
-  window.addEventListener('resize', resize);
+  window.addEventListener("resize", resize);
 
-  const HEX_SIZE  = 38;
-  const HEX_W     = HEX_SIZE * 2;
-  const HEX_H     = Math.sqrt(3) * HEX_SIZE;
+  const HEX_SIZE = 38;
+  const HEX_W = HEX_SIZE * 2;
+  const HEX_H = Math.sqrt(3) * HEX_SIZE;
 
   function hexPoints(cx, cy, size) {
     const pts = [];
     for (let i = 0; i < 6; i++) {
-      const angle = Math.PI / 180 * (60 * i - 30);
+      const angle = (Math.PI / 180) * (60 * i - 30);
       pts.push([cx + size * Math.cos(angle), cy + size * Math.sin(angle)]);
     }
     return pts;
   }
 
   let scrollY = 0;
-  window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      scrollY = window.scrollY;
+    },
+    { passive: true },
+  );
 
   // Track mouse for hex glow
-  let mx = -9999, my = -9999;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  let mx = -9999,
+    my = -9999;
+  document.addEventListener("mousemove", (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+  });
 
   let hTime = 0;
 
   function drawHex() {
     ctx.clearRect(0, 0, hc.width, hc.height);
 
-    const cols = Math.ceil(hc.width  / (HEX_W * 0.75)) + 2;
+    const cols = Math.ceil(hc.width / (HEX_W * 0.75)) + 2;
     const rows = Math.ceil(hc.height / HEX_H) + 2;
 
     for (let row = -1; row < rows; row++) {
@@ -1035,14 +995,17 @@ animateTrail();
         const proximity = Math.max(0, 1 - dist / 220);
 
         // Pulse based on time + position
-        const pulse = Math.sin(hTime * 0.012 + col * 0.5 + row * 0.7) * 0.5 + 0.5;
+        const pulse =
+          Math.sin(hTime * 0.012 + col * 0.5 + row * 0.7) * 0.5 + 0.5;
 
         const baseAlpha = 0.04 + pulse * 0.04 + proximity * 0.25;
         const borderAlpha = 0.08 + pulse * 0.06 + proximity * 0.5;
 
         const pts = hexPoints(cx, cy, HEX_SIZE - 2);
         ctx.beginPath();
-        pts.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
+        pts.forEach(([x, y], i) =>
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y),
+        );
         ctx.closePath();
 
         // Fill
@@ -1057,9 +1020,10 @@ animateTrail();
         ctx.fill();
 
         // Border
-        ctx.strokeStyle = proximity > 0.1
-          ? `rgba(0,245,255,${borderAlpha})`
-          : `rgba(0,245,255,${borderAlpha * 0.6})`;
+        ctx.strokeStyle =
+          proximity > 0.1
+            ? `rgba(0,245,255,${borderAlpha})`
+            : `rgba(0,245,255,${borderAlpha * 0.6})`;
         ctx.lineWidth = proximity > 0.1 ? 1.5 : 0.5;
         ctx.stroke();
 
@@ -1069,7 +1033,7 @@ animateTrail();
           ctx.arc(cx, cy, proximity * 3, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(0,245,255,${proximity * 0.8})`;
           ctx.shadowBlur = 10;
-          ctx.shadowColor = 'rgba(0,245,255,0.8)';
+          ctx.shadowColor = "rgba(0,245,255,0.8)";
           ctx.fill();
           ctx.shadowBlur = 0;
         }
@@ -1082,4 +1046,3 @@ animateTrail();
 
   drawHex();
 })();
-

@@ -2140,3 +2140,86 @@ body::after {
   animation: shootingStar linear forwards;
 }
 
+
+
+/* ═══════════════════════════════════════════════════════════════
+   HACKER INTRO SCREEN  —  subtle, ~1.5 s, no breach
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Full-screen overlay */
+#hacker-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.6s ease;
+}
+#hacker-intro.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Terminal box */
+.hi-terminal {
+  position: relative;
+  z-index: 10;
+  width: min(560px, 90vw);
+  background: #080808;
+  border: 1px solid #1a2e1a;
+  border-radius: 10px;
+  box-shadow:
+    0 0 30px rgba(0, 255, 0, 0.08),
+    inset 0 0 20px rgba(0, 255, 0, 0.02);
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  overflow: hidden;
+}
+.hi-term-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  background: #0f0f0f;
+  border-bottom: 1px solid #1a2e1a;
+}
+.hi-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.hi-term-title {
+  color: #3a6a3a;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  margin-left: 8px;
+}
+.hi-term-body {
+  padding: 16px 20px 22px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* Log lines — slide in gently */
+.hi-log {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: #00cc00;
+  opacity: 0;
+  animation: hiLogIn 0.2s ease forwards;
+  white-space: pre-wrap;
+}
+@keyframes hiLogIn {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Colour variants */
+.hi-log.warn  { color: #ccaa00; }
+.hi-log.info  { color: #00b800; }
+.hi-log.dim   { color: #376637; }
