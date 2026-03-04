@@ -68,6 +68,8 @@ body {
   color: var(--text);
   overflow-x: hidden;
   cursor: none;
+  /* Momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── OFFLINE BANNER ───────────────────────── */
@@ -305,12 +307,39 @@ nav {
     0 0 40px rgba(0, 245, 255, 0.08),
     inset 0 1px 0 rgba(0, 245, 255, 0.1);
   transition: all 0.3s;
+  /* Promote nav to its own compositor layer so scroll doesn't repaint it */
+  will-change: transform;
 }
 nav.scrolled {
   background: rgba(2, 8, 24, 0.92);
   box-shadow:
     0 0 60px rgba(0, 245, 255, 0.15),
     inset 0 1px 0 rgba(0, 245, 255, 0.15);
+}
+
+/* ── MOBILE SCROLL & CURSOR FIX ──────────── */
+@media (max-width: 768px) {
+  html {
+    /* Let native touch fling work without JS interference */
+    scroll-behavior: auto;
+  }
+  body {
+    cursor: auto; /* Restore cursor so touch events fire instantly */
+    touch-action: pan-y; /* Allow vertical scroll without delay */
+  }
+  nav {
+    /* Blur filter causes full-page repaint on every scroll frame on mobile */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(2, 8, 24, 0.92);
+  }
+  nav.scrolled {
+    background: rgba(2, 8, 24, 0.97);
+  }
+  /* Buttons also had cursor:none which delays touch recognition */
+  .btn-primary, .btn-secondary {
+    cursor: auto;
+  }
 }
 .nav-logo {
   font-family: "Orbitron", sans-serif;
