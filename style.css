@@ -685,6 +685,14 @@ nav.scrolled {
   padding: 0 clamp(20px, 5vw, 60px);
   position: relative;
   z-index: 2;
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 0 16px;
+    overflow-x: hidden;
+  }
 }
 
 /* ── SECTION BASE ──────────────────────────── */

@@ -1166,15 +1166,24 @@ if (!IS_MOBILE) {
 
 // ── 12. MOBILE TOUCH FLIP FOR 3D CARDS ───────────────────────
 (function mobileCardFlip() {
-  if (!IS_MOBILE) return;
   document.querySelectorAll(".project-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      // Toggle the 'flipped' class on tap
-      const isFlipped = card.classList.contains("flipped");
-      document
-        .querySelectorAll(".project-card")
-        .forEach((c) => c.classList.remove("flipped"));
-      if (!isFlipped) card.classList.add("flipped");
+    // Add both click and touchstart to ensure it fires on all touch devices
+    ["click", "touchstart"].forEach((evt) => {
+      card.addEventListener(
+        evt,
+        function (e) {
+          // Only trigger manual flip on narrow screens (mobile behavior)
+          if (window.innerWidth > 900) return;
+
+          const isFlipped = card.classList.contains("flipped");
+          document
+            .querySelectorAll(".project-card")
+            .forEach((c) => c.classList.remove("flipped"));
+
+          if (!isFlipped) card.classList.add("flipped");
+        },
+        { passive: true },
+      );
     });
   });
 })();
