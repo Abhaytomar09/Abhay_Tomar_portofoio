@@ -600,6 +600,7 @@ nav.scrolled {
   .nav-links.open {
     max-height: 500px;
     padding: 16px 0 24px;
+    background: rgba(2, 8, 24, 0.98); /* Ensure solid background even when scrolled */
   }
 
   .nav-links li { width: 100%; }
@@ -623,6 +624,9 @@ nav.scrolled {
   [data-theme="light"] .nav-links {
     background: rgba(255,255,255,0.97);
     border-bottom: 1px solid rgba(0,149,179,0.2);
+  }
+  [data-theme="light"] .nav-links.open {
+    background: rgba(255, 255, 255, 1); /* Solid background when open */
   }
   [data-theme="light"] .nav-links a {
     color: #0f1e40;
