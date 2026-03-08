@@ -1459,6 +1459,19 @@ section {
   gap: 24px;
 }
 
+/* ── MOBILE GRID ADJUSTMENTS ── */
+@media (max-width: 500px) {
+  .achieve-grid {
+    grid-template-columns: 1fr;
+  }
+  .certs-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+  .achieve-card, .timeline-card {
+    padding: 20px 16px;
+  }
+}
+
 .cert-showcase-card {
   background: var(--glass);
   border: 1px solid var(--glass-border);
@@ -2574,7 +2587,11 @@ footer {
   transform-style: preserve-3d;
   transition: transform 0.65s cubic-bezier(0.4,0,0.2,1);
 }
-.project-card:hover .card-flip-inner { transform: rotateY(180deg); }
+.project-card:hover .card-flip-inner,
+.project-card:active .card-flip-inner,
+.project-card.flipped .card-flip-inner {
+  transform: rotateY(180deg);
+}
 .card-face {
   position: absolute;
   inset: 0;

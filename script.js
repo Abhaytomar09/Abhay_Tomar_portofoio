@@ -1163,3 +1163,18 @@ if (!IS_MOBILE) {
     setTimeout(() => hero.classList.remove("scanning"), 1300);
   }, 600);
 })();
+
+// ── 12. MOBILE TOUCH FLIP FOR 3D CARDS ───────────────────────
+(function mobileCardFlip() {
+  if (!IS_MOBILE) return;
+  document.querySelectorAll(".project-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      // Toggle the 'flipped' class on tap
+      const isFlipped = card.classList.contains("flipped");
+      document
+        .querySelectorAll(".project-card")
+        .forEach((c) => c.classList.remove("flipped"));
+      if (!isFlipped) card.classList.add("flipped");
+    });
+  });
+})();
