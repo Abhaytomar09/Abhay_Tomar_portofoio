@@ -5,8 +5,6 @@
 A futuristic, fully animated **cyberpunk-themed personal portfolio** built with vanilla HTML, CSS, and JavaScript — no frameworks, no dependencies, just pure web tech with premium aesthetics.
 
 ---
-
-
 ## 🚀 Features
 
 | Category             | What's Inside                                                                   |
