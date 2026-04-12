@@ -7,6 +7,7 @@ A futuristic, fully animated **cyberpunk-themed personal portfolio** built with 
 ---
 ## 🚀 Features
 
+
 | Category             | What's Inside                                                                   |
 | -------------------- | ------------------------------------------------------------------------------- |
 | 🎨 **Design**        | Cyberpunk dark theme · Neon cyan/purple/pink palette · Glassmorphism cards      |
